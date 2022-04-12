@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.14.1/css/ol.css" type="text/css">
+    <style>
+      .map {
+        height: 400px;
+        width: 100%;
+      }
+    </style>
+    <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.14.1/build/ol.js"></script>
+    <title>OpenLayers example</title>
+  </head>
+  <body>
+    <div id="map" class="map"></div>
+    <script src="main.js"></script>
+    <h2>My Map</h2>
+    <div id="map" class="map"></div>
+    <script type="text/javascript">
+      var map = new ol.Map({
+        target: 'map',
+        layers: [
+          new ol.layer.Tile({
+            source: new ol.source.OSM()
+          })
+        ],
+        view: new ol.View({
+          center: ol.proj.fromLonLat([-120.658115,35.297632]),
+          zoom: 5.75
+        })
+      })
+      
+      var glendale = ol.proj.fromLonLat([-118.244927, 34.193008]);
+      var mp = new ol.layer.Vector({
+        source: new ol.source.Vector({
+          features: [new ol.Feature(new ol.geom.Circle(glendale, 20000))]
+        }),
+        style: [
+          new ol.style.Style({
+            fill: new ol.style.Fill({
+              color: 'rgba(255, 0, 0, 1)'
+            })
+          })
+        ]
+      });
+      map.addLayer(mp);
+
+      var santabarbara = ol.proj.fromLonLat([-119.815125, 34.446776]);
+      var mp = new ol.layer.Vector({
+        source: new ol.source.Vector({
+          features: [new ol.Feature(new ol.geom.Circle(santabarbara, 20000))]
+        }),
+        style: [
+          new ol.style.Style({
+            fill: new ol.style.Fill({
+              color: 'rgba(0, 255, 0, 1)'
+            })
+          })
+        ]
+      });
+      map.addLayer(mp);
+
+      var sanjose = ol.proj.fromLonLat([-121.817413, 37.297058]);
+      var mp = new ol.layer.Vector({
+        source: new ol.source.Vector({
+          features: [new ol.Feature(new ol.geom.Circle(sanjose, 20000))]
+        }),
+        style: [
+          new ol.style.Style({
+            fill: new ol.style.Fill({
+              color: 'rgba(0, 0, 255, 1)'
+            })
+          })
+        ]
+      });
+      map.addLayer(mp);
+
+      var slo = ol.proj.fromLonLat([-120.658115,35.297632]);
+      var mp = new ol.layer.Vector({
+        source: new ol.source.Vector({
+          features: [new ol.Feature(new ol.geom.Circle(slo, 49000))]
+        }),
+        style: [
+          new ol.style.Style({
+            fill: new ol.style.Fill({
+              color: 'rgba(170, 100, 100, 1)'
+            })
+          })
+        ]
+      });
+      map.addLayer(mp);
+
+      ;
+    </script>
+  </body>
+</html>
